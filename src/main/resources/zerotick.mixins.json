@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.snowsylph.zerotick.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "server": [
+    "BambooTickMixin",
+    "CactusTickMixin",
+    "ChorusFlowerTickMixin",
+    "SugarCaneTickMixin",
+    "AbstractPlantPartBlockAccessor",
+    "AbstractPlantStemBlockAccessor",
+    "AbstractPlantStemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
