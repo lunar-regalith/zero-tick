@@ -19,15 +19,18 @@ public class BambooTickMixin {
 
     @Inject(at = @At("TAIL"), method = "scheduledTick")
     public void scheduledTick(final BlockState state, final ServerWorld world, final BlockPos pos, final Random random, CallbackInfo info) {
-        if (!Config.config().isPluginEnabled) {
+        if (!Config.config().isPluginEnabled)
+        {
             return;
         }
 
-        if (!Config.config().tickableBamboo) {
+        if (!Config.config().tickableBamboo)
+        {
             return;
         }
 
-        if (world.isAir(pos.down())) {
+        if (world.isAir(pos.down()))
+        {
             return;
         }
 

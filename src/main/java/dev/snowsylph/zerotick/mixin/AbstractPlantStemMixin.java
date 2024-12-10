@@ -56,24 +56,24 @@ public abstract class AbstractPlantStemMixin extends AbstractPlantPartBlock {
             IntProperty age = ((AbstractPlantStemBlockAccessor) block).getAge();
             double growthChance = ((AbstractPlantStemBlockAccessor) block).getGrowthChance();
 
-            if (block instanceof TwistingVinesBlock) {
-                if (world.isAir(pos.down()))
-                    return;
+            switch (((AbstractPlantPartBlockAccessor) block).getGrowthDirection())
+            {
+                case Direction.UP -> {
+                    if (world.isAir(pos.down()))
+                        return;
+                }
+                case Direction.DOWN -> {
+                    if (world.isAir(pos.up()))
+                        return;
+                }
+                default -> {}
             }
 
-            if (block instanceof WeepingVinesBlock) {
-                if (world.isAir(pos.up()))
-                    return;
-            }
-
-            if (block instanceof CaveVinesHeadBlock) {
-                if (world.isAir(pos.up()))
-                    return;
-            }
-
-            if (state.get(age) < 25 && random.nextDouble() < growthChance) {
+            if (state.get(age) < 25 && random.nextDouble() < growthChance)
+            {
                 BlockPos blockPos = pos.offset(((AbstractPlantPartBlockAccessor) block).getGrowthDirection());
-                if (world.getBlockState(blockPos).isAir()) {
+                if (world.getBlockState(blockPos).isAir())
+                {
                     world.setBlockState(blockPos, state.cycle(age));
                 }
             }
